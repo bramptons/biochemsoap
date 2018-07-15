@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e0eba5b9-2d1d-4d9d-95cf-f5bb5f3666b0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://lfs1.bsppl.net/NominalLedgerService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NominalLedgerService.wsdl" MetadataType="Wsdl" ID="717a7aa1-cbd2-401b-84af-f8af0a27f8dc" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?wsdl" />
+    <MetadataFile FileName="NominalLedgerService.disco" MetadataType="Disco" ID="d80bb7a2-aa9a-4ad7-8755-e1e6226c04e8" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?disco" />
+    <MetadataFile FileName="NominalLedgerService.xsd" MetadataType="Schema" ID="b612b2ec-d165-45d7-adb0-e4edd952e582" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NominalLedgerService1.xsd" MetadataType="Schema" ID="bab82a18-1ca1-4a22-87e6-361f4ae7ecf6" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="NominalLedgerService2.xsd" MetadataType="Schema" ID="4088b29d-ca99-47e3-beac-6c652542e77c" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?xsd=xsd3" />
+    <MetadataFile FileName="NominalLedgerService3.xsd" MetadataType="Schema" ID="2f17823b-85cc-4e5f-8f57-3f75aab5475d" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
