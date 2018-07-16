@@ -36,9 +36,16 @@ namespace ADI
                 Server = ConfigurationManager.AppSettings["Password"],
                 SiteReference = ConfigurationManager.AppSettings["SiteReference"]
             };
-
-            string ticket = client.CreateNewTicket(logonObject);
-            return ticket;
+            try
+            {
+                string ticket = client.CreateNewTicket(logonObject);
+                return ticket;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
 
         public static NominalTransactionUpdateResponse NominalTransaction()
@@ -65,7 +72,7 @@ namespace ADI
                 switch (currency)
                 {
                     case 's':
-                        Console.WriteLine("Currency selected: Sterling GBP");
+                        Console.WriteLine("Currency selected: Sterling GBP, line  number {0}", nominal.lineNumber);
                         taxJournalDetails.Add(new NominalTaxJournalDetail()
                         {
                             NominalCode = nominal.nominalCode,
@@ -129,6 +136,7 @@ namespace ADI
             while (nominal.moreData == true);
             //switch for header information based on currency switch
             Console.WriteLine(string.Format("A total of {0} lines has been read", nominal.lineNumber));
+            nominal.lineNumber = 0;
 
             journal.DetailLines = taxJournalDetails.ToArray();
             journal.Reference = "VOUCHERREF";
@@ -140,17 +148,24 @@ namespace ADI
 
             request.Ticket = FetchTicket();
             request.Transaction = journal;
-
-            try
+            if(request.Ticket == null)
             {
-                Console.WriteLine("trying to make a request");
-                response = serviceClient.NominalTaxJournalUpdate(request);
-                return response;
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("The following error has occured:\n" + e);
+                Environment.Exit(0);
                 return null;
+            }
+            else
+            {
+                try
+                {
+                    Console.WriteLine("trying to make a request");
+                    response = serviceClient.NominalTaxJournalUpdate(request);
+                    return response;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("The following error has occured:\n" + e);
+                    return null;
+                }
             }
         }
     }

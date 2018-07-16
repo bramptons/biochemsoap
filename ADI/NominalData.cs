@@ -28,7 +28,7 @@ namespace ADI
             if(csvList == null)
                 csvList = ReadCsv();
             
-            if(lineNumber <= csvList.Count)
+            if(lineNumber < csvList.Count)
             {
                 nominalCode = csvList[lineNumber][0].ToString();
                 homeNetValue = Convert.ToDouble(csvList[lineNumber][0].ToString());
@@ -42,7 +42,6 @@ namespace ADI
             else
             {
                 moreData = false;
-                lineNumber = 0;
             }
             /*
             nominalCode = "0003199100";
