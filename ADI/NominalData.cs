@@ -12,11 +12,10 @@ namespace ADI
         public double homeNetValue;
         public string lineDetail;
         public string taxCode;
-        public double homeTaxValue;
         public string transactionUserKey1;
         public string transactionUserKey2;
         public string transactionUserKey3;
-        public double currencyTaxVlaue;
+        public double currencyTaxValue;
 
         public decimal exchangeRate = Convert.ToDecimal(ConfigurationManager.AppSettings["ExchangeRate"]);
 

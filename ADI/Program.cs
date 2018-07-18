@@ -10,7 +10,7 @@ namespace ADI
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(FetchTicket());
+            Console.WriteLine(FetchTicket());
             NominalTransactionUpdateResponse response = new NominalTransactionUpdateResponse();
             response = NominalTransaction();
 
@@ -79,7 +79,7 @@ namespace ADI
                             HomeNetValue = nominal.homeNetValue,
                             LineDetail = nominal.lineDetail,
                             TaxCode = nominal.taxCode,
-                            HomeTaxValue = nominal.homeTaxValue,
+                            HomeTaxValue = Convert.ToDouble(ConfigurationManager.AppSettings["HomeTaxValue"]),
                             TransactionUserKey1 = nominal.transactionUserKey1,
                             TransactionUserKey2 = nominal.transactionUserKey2,
                             TransactionUserKey3 = nominal.transactionUserKey3
