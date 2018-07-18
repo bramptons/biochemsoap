@@ -7,7 +7,8 @@ namespace ADI
 {
     class NominalData
     {
-        public List<string[]> csvList;
+        public List<string[]> csvList = ReadCsv();
+        public char typeChar = ReturnCurrency();
 
         public void GetData()
         {   
@@ -29,9 +30,9 @@ namespace ADI
             return rows;
         }
 
-        public char ReturnCurrency()
+        private static char ReturnCurrency()
         {
-            Console.WriteLine("Just type in: \"sterling\"");
+            Console.WriteLine("Just type in: \"sterling or dollar\"");
             string path = Console.ReadLine();
             char currency;
             if (path == "sterling")
@@ -41,7 +42,14 @@ namespace ADI
             }
             else
             {
-                return currency = ' ';
+                if(path == "dollar")
+                {
+                    return currency = 'd';
+                }
+                else
+                {
+                    return 'e';
+                }
             }
         }
     }
