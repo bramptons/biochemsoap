@@ -11,17 +11,10 @@ namespace ADI
         static void Main(string[] args)
         {
             Console.WriteLine(FetchTicket());
-            NominalTransactionUpdateResponse response = new NominalTransactionUpdateResponse();
-            response = NominalTransaction();
 
-            if(response.ErrorID > 0)
-            {
-                Console.WriteLine(response.ErrorMessage);
-            }
-            else
-            {
-                Console.WriteLine(response.Transaction.HeaderAuditNo.ToString());
-            }
+            NominalTransaction();
+
+            
         }
 
         public static string FetchTicket()
@@ -33,7 +26,7 @@ namespace ADI
                 UserID = ConfigurationManager.AppSettings["UserID"],
                 UserName = ConfigurationManager.AppSettings["UserName"],
                 Password = ConfigurationManager.AppSettings["Password"],
-                Server = ConfigurationManager.AppSettings["Password"],
+                Server = ConfigurationManager.AppSettings["Server"],
                 SiteReference = ConfigurationManager.AppSettings["SiteReference"]
             };
             try
@@ -48,7 +41,7 @@ namespace ADI
             }
         }
 
-        public static NominalTransactionUpdateResponse NominalTransaction()
+        public static void NominalTransaction()
         {
             NominalLedgerServiceClient serviceClient = new NominalLedgerServiceClient();
             NominalTaxJournalUpdateRequest request = new NominalTaxJournalUpdateRequest();
@@ -64,109 +57,112 @@ namespace ADI
             NominalData nominal = new NominalData();
 
             char currency = nominal.ReturnCurrency();
-            nominal.moreData = true;
-            do
-            {
-                nominal.CsvToList();
 
-                switch (currency)
-                {
-                    case 's':
-                        Console.WriteLine("Currency selected: Sterling GBP, line  number {0}", nominal.lineNumber);
+            nominal.GetData();
+            int successLines = 0;
+            int failureLines = 0;
+            int rowIndex = 0;
+
+            switch (currency)
+            {
+                case 's':
+                    Console.WriteLine("Currency selected: Sterling GBP");
+                    foreach (var row in nominal.csvList)
+                    {
                         taxJournalDetails.Add(new NominalTaxJournalDetail()
                         {
-                            NominalCode = nominal.nominalCode,
-                            HomeNetValue = nominal.homeNetValue,
-                            LineDetail = nominal.lineDetail,
-                            TaxCode = nominal.taxCode,
-                            HomeTaxValue = Convert.ToDouble(ConfigurationManager.AppSettings["HomeTaxValue"]),
-                            TransactionUserKey1 = nominal.transactionUserKey1,
-                            TransactionUserKey2 = nominal.transactionUserKey2,
-                            TransactionUserKey3 = nominal.transactionUserKey3
+                            NominalCode = row[0],
+                            HomeNetValue = Convert.ToDouble(row[1]),
+                            LineDetail = row[2],
+                            TaxCode = row[3],
+                            HomeTaxValue = Convert.ToDouble(row[4]),
+                            TransactionUserKey1 = row[5],
+                            TransactionUserKey2 = row[6],
+                            TransactionUserKey3 = row[7]
                         });
-                        if(journal.GrossContraNominalCode == null)
-                        {
-                            journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC GBP"];
-                            journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC GBP"];
-                        }
-                        break;
-                    case 'd':
-                        taxJournalDetails.Add(new NominalTaxJournalDetail()
-                        {
-                            NominalCode = "0502945USD",
-                            HomeNetValue = 10.00,
-                            LineDetail = "CONCATENATION of DATA",
-                            TaxCode = "S7",
-                            CurrencyTaxValue = 0.23,
-                            TransactionUserKey1 = "abc",
-                            TransactionUserKey2 = "xyz",
-                            TransactionUserKey3 = "www"
-                        });
-                        if(journal.GrossContraNominalCode == null)
-                        {
-                            journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC GBP"];
-                            journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC USD"];
-                            journal.CurrencyCode = ConfigurationManager.AppSettings["CCODE USD"];
-                            //journal.ExchangeRate = Convert.ToDecimal(ConfigurationManager.AppSettings["ExchangeRate"]);
-                        }
-                        break;
-                    case 'e':
-                        taxJournalDetails.Add(new NominalTaxJournalDetail()
-                        {
-                            NominalCode = "0502945EUR",
-                            HomeNetValue = 10.00,
-                            LineDetail = "CONCATENATION of DATA",
-                            TaxCode = "S7",
-                            CurrencyTaxValue = 0.23,
-                            TransactionUserKey1 = "abc",
-                            TransactionUserKey2 = "xyz",
-                            TransactionUserKey3 = "www"
-                        });
-                        if(journal.GrossContraNominalCode == null)
-                        {
-                            journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC EUR"];
-                            journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC EUR"];
-                            journal.CurrencyCode = ConfigurationManager.AppSettings["CCODE EUR"];
-                            //journal.ExchangeRate = Convert.ToDecimal(ConfigurationManager.AppSettings["ExchangeRate"]);
-                        }
-                        break;
-                }
-                nominal.lineNumber++;
-            }
-            while (nominal.moreData == true);
-            //switch for header information based on currency switch
-            Console.WriteLine(string.Format("A total of {0} lines has been read", nominal.lineNumber));
-            nominal.lineNumber = 0;
 
-            journal.DetailLines = taxJournalDetails.ToArray();
-            journal.Reference = "VOUCHERREF";
-            journal.BatchReference = "FONTEVA";
-            journal.PostingDate = DateTime.Now;
-            journal.HeaderDebitCreditFlag = modEnumsDebitCreditType.Credit;
-            journal.Description = "Membership Import Journal";
-            journal.PostLive = false;
+                        journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC GBP"];
+                        journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC GBP"];
 
-            request.Ticket = FetchTicket();
-            request.Transaction = journal;
-            if(request.Ticket == null)
-            {
-                Environment.Exit(0);
-                return null;
+                        journal.DetailLines = taxJournalDetails.ToArray();
+                        journal.Reference = "VOUCHERREF";
+                        journal.BatchReference = "FONTEVA";
+                        journal.PostingDate = DateTime.Now;
+                        journal.HeaderDebitCreditFlag = modEnumsDebitCreditType.Credit;
+                        journal.Description = "Membership Import Journal";
+                        journal.PostLive = false;
+
+                        request.Ticket = FetchTicket();
+                        request.Transaction = journal;
+                        
+                        try
+                        {
+                            Console.WriteLine("trying to make a request");
+                            response = serviceClient.NominalTaxJournalUpdate(request);
+                            if (response.ErrorID > 0)
+                            {
+                                Console.WriteLine("The request was sent however the following error came back form the web service:");
+                                Console.WriteLine(response.ErrorMessage);
+                                Console.WriteLine("The request failed on line {0}", rowIndex + 1);
+                                failureLines++;
+                            }
+                            else
+                            {
+                                Console.WriteLine(response.Transaction.HeaderAuditNo.ToString());
+                                successLines++;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("The following error has occured no request was sent:\n" + e);
+                        }
+                        rowIndex++;
+                    }
+                    break;
+                /*case 'd':
+                    taxJournalDetails.Add(new NominalTaxJournalDetail()
+                    {
+                        NominalCode = "0502945USD",
+                        HomeNetValue = 10.00,
+                        LineDetail = "CONCATENATION of DATA",
+                        TaxCode = "S7",
+                        CurrencyTaxValue = 0.23,
+                        TransactionUserKey1 = "abc",
+                        TransactionUserKey2 = "xyz",
+                        TransactionUserKey3 = "www"
+                    });
+                    if (journal.GrossContraNominalCode == null)
+                    {
+                        journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC GBP"];
+                        journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC USD"];
+                        journal.CurrencyCode = ConfigurationManager.AppSettings["CCODE USD"];
+                        //journal.ExchangeRate = Convert.ToDecimal(ConfigurationManager.AppSettings["ExchangeRate"]);
+                    }
+
+                    break;
+                case 'e':
+                    taxJournalDetails.Add(new NominalTaxJournalDetail()
+                    {
+                        NominalCode = "0502945EUR",
+                        HomeNetValue = 10.00,
+                        LineDetail = "CONCATENATION of DATA",
+                        TaxCode = "S7",
+                        CurrencyTaxValue = 0.23,
+                        TransactionUserKey1 = "abc",
+                        TransactionUserKey2 = "xyz",
+                        TransactionUserKey3 = "www"
+                    });
+                    if (journal.GrossContraNominalCode == null)
+                    {
+                        journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC EUR"];
+                        journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC EUR"];
+                        journal.CurrencyCode = ConfigurationManager.AppSettings["CCODE EUR"];
+                        //journal.ExchangeRate = Convert.ToDecimal(ConfigurationManager.AppSettings["ExchangeRate"]);
+                    }
+                    break;*/
             }
-            else
-            {
-                try
-                {
-                    Console.WriteLine("trying to make a request");
-                    response = serviceClient.NominalTaxJournalUpdate(request);
-                    return response;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("The following error has occured:\n" + e);
-                    return null;
-                }
-            }
-        }
+
+            Console.WriteLine(string.Format("\n\nA total of {0} lines were read\n{1} lines were pushed successfully\n{2} lines failed", nominal.csvList.Count, successLines, failureLines));
+        }        
     }
 }
