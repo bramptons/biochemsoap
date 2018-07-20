@@ -13,8 +13,6 @@ namespace ADI
             Console.WriteLine(FetchTicket());
 
             NominalTransaction();
-
-            
         }
 
         public static string FetchTicket()
@@ -43,16 +41,12 @@ namespace ADI
 
         public static void NominalTransaction()
         {
-            NominalLedgerServiceClient serviceClient = new NominalLedgerServiceClient();
-            NominalTaxJournalUpdateRequest request = new NominalTaxJournalUpdateRequest();
-            List<NominalTaxJournalDetail> taxJournalDetails = new List<NominalTaxJournalDetail>();
-            NominalTaxJournal journal = new NominalTaxJournal
-            {
-                Ledger = modEnumsNominalLedgerType.Cashbook,
-                IsPayment = true
-            };
-            NominalTaxJournalDetail journalDetail = new NominalTaxJournalDetail();
-            NominalTransactionUpdateResponse response = new NominalTransactionUpdateResponse();
+            NominalLedgerServiceClient serviceClient;
+            NominalTaxJournalUpdateRequest request;
+            List<NominalTaxJournalDetail> taxJournalDetails;
+            NominalTaxJournal journal;
+            NominalTransactionUpdateResponse response;
+            
 
             NominalData nominal = new NominalData();
 
@@ -66,6 +60,7 @@ namespace ADI
                     Console.WriteLine("Currency selected: Sterling GBP");
                     foreach (var row in nominal.csvList)
                     {
+                        CreateNominalParts(out serviceClient, out request, out taxJournalDetails, out journal, out response);
                         taxJournalDetails.Add(new NominalTaxJournalDetail()
                         {
                             NominalCode = row[0],
@@ -91,7 +86,7 @@ namespace ADI
 
                         request.Ticket = FetchTicket();
                         request.Transaction = journal;
-                        
+
                         try
                         {
                             Console.WriteLine("trying to make a request");
@@ -192,9 +187,26 @@ namespace ADI
                         //journal.ExchangeRate = Convert.ToDecimal(ConfigurationManager.AppSettings["ExchangeRate"]);
                     }
                     break;*/
+                default:
+                    Console.WriteLine("Nothing Entered ending application");
+                    break;
             }
 
             Console.WriteLine(string.Format("\n\nA total of {0} lines were read\n{1} lines were pushed successfully\n{2} lines failed", nominal.csvList.Count, successLines, failureLines));
-        }        
+        }
+
+        private static void CreateNominalParts(out NominalLedgerServiceClient serviceClient, out NominalTaxJournalUpdateRequest request, out List<NominalTaxJournalDetail> taxJournalDetails, out NominalTaxJournal journal, out NominalTransactionUpdateResponse response)
+        {
+            serviceClient = new NominalLedgerServiceClient();
+            request = new NominalTaxJournalUpdateRequest();
+            taxJournalDetails = new List<NominalTaxJournalDetail>();
+            journal = new NominalTaxJournal
+            {
+                Ledger = modEnumsNominalLedgerType.Cashbook,
+                IsPayment = true
+            };
+            //NominalTaxJournalDetail journalDetail = new NominalTaxJournalDetail();
+            response = new NominalTransactionUpdateResponse();
+        }
     }
 }
