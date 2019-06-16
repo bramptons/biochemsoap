@@ -47,7 +47,6 @@ namespace ADI
             NominalTaxJournal journal;
             NominalTransactionUpdateResponse response;
             
-
             NominalData nominal = new NominalData();
 
             int successLines = 0;
@@ -60,7 +59,8 @@ namespace ADI
                     Console.WriteLine("Currency selected: Sterling GBP");
                     foreach (var row in nominal.csvList)
                     {
-                        CreateNominalParts(out serviceClient, out request, out taxJournalDetails, out journal, out response);
+                        BuildNominalHeader(out serviceClient, out request, out taxJournalDetails, out journal, out response);
+
                         taxJournalDetails.Add(new NominalTaxJournalDetail()
                         {
                             NominalCode = row[0],
@@ -72,42 +72,12 @@ namespace ADI
                             TransactionUserKey2 = row[6],
                             TransactionUserKey3 = row[7]
                         });
-
+                        //currency specific configuration
                         journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC GBP"];
                         journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC GBP"];
 
-                        journal.DetailLines = taxJournalDetails.ToArray();
-                        journal.Reference = "VOUCHERREF";
-                        journal.BatchReference = "FONTEVA";
-                        journal.PostingDate = DateTime.Now;
-                        journal.HeaderDebitCreditFlag = modEnumsDebitCreditType.Credit;
-                        journal.Description = "Membership Import Journal";
-                        journal.PostLive = false;
+                        BuildNominalLines(serviceClient, request, taxJournalDetails, journal, ref response, ref successLines, ref failureLines, rowIndex);
 
-                        request.Ticket = FetchTicket();
-                        request.Transaction = journal;
-
-                        try
-                        {
-                            Console.WriteLine("trying to make a request");
-                            response = serviceClient.NominalTaxJournalUpdate(request);
-                            if (response.ErrorID > 0)
-                            {
-                                Console.WriteLine("The request was sent however the following error came back form the web service:");
-                                Console.WriteLine(response.ErrorMessage);
-                                Console.WriteLine("The request failed on line {0}", rowIndex + 1);
-                                failureLines++;
-                            }
-                            else
-                            {
-                                Console.WriteLine(response.Transaction.HeaderAuditNo.ToString());
-                                successLines++;
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("The following error has occured no request was sent:\n" + e);
-                        }
                         rowIndex++;
                     }
                     break;
@@ -115,6 +85,8 @@ namespace ADI
                     Console.WriteLine("Currency selected: US Dollars");
                     foreach (var row in nominal.csvList)
                     {
+                        BuildNominalHeader(out serviceClient, out request, out taxJournalDetails, out journal, out response);
+
                         taxJournalDetails.Add(new NominalTaxJournalDetail()
                         {
                             NominalCode = row[0],
@@ -126,76 +98,90 @@ namespace ADI
                             TransactionUserKey2 = row[6],
                             TransactionUserKey3 = row[7]
                         });
-
+                        //currency specific configuration
                         journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC USD"];
                         journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC USD"];
                         journal.CurrencyCode = ConfigurationManager.AppSettings["CCODE USD"];
 
-                        journal.DetailLines = taxJournalDetails.ToArray();
-                        journal.Reference = "VOUCHERRE2";
-                        journal.BatchReference = "FONTEVA";
-                        journal.PostingDate = DateTime.Now;
-                        journal.HeaderDebitCreditFlag = modEnumsDebitCreditType.Credit;
-                        journal.Description = "Membership Import Journal";
-                        journal.PostLive = false;
+                        BuildNominalLines(serviceClient, request, taxJournalDetails, journal, ref response, ref successLines, ref failureLines, rowIndex);
 
-                        request.Ticket = FetchTicket();
-                        request.Transaction = journal;
-
-                        try
-                        {
-                            Console.WriteLine("trying to make a request");
-                            response = serviceClient.NominalTaxJournalUpdate(request);
-                            if (response.ErrorID > 0)
-                            {
-                                Console.WriteLine("The request was sent however the following error came back form the web service:");
-                                Console.WriteLine(response.ErrorMessage);
-                                Console.WriteLine("The request failed on line {0}", rowIndex + 1);
-                                failureLines++;
-                            }
-                            else
-                            {
-                                Console.WriteLine(response.Transaction.HeaderAuditNo.ToString());
-                                successLines++;
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("The following error has occured no request was sent:\n" + e);
-                        }
                         rowIndex++;
                     }
 
                     break;
-                /*case 'e':
-                    taxJournalDetails.Add(new NominalTaxJournalDetail()
+                case 'e':
+                    Console.WriteLine("Currency selected: Euros");
+                    foreach (var row in nominal.csvList)
                     {
-                        NominalCode = "0502945EUR",
-                        HomeNetValue = 10.00,
-                        LineDetail = "CONCATENATION of DATA",
-                        TaxCode = "S7",
-                        CurrencyTaxValue = 0.23,
-                        TransactionUserKey1 = "abc",
-                        TransactionUserKey2 = "xyz",
-                        TransactionUserKey3 = "www"
-                    });
-                    if (journal.GrossContraNominalCode == null)
-                    {
+                        BuildNominalHeader(out serviceClient, out request, out taxJournalDetails, out journal, out response);
+
+                        taxJournalDetails.Add(new NominalTaxJournalDetail()
+                        {
+                            NominalCode = row[0],
+                            CurrencyGrossValue = Convert.ToDouble(row[1]),
+                            LineDetail = row[2],
+                            TaxCode = row[3],
+                            CurrencyTaxValue = Convert.ToDouble(row[4]),
+                            TransactionUserKey1 = row[5],
+                            TransactionUserKey2 = row[6],
+                            TransactionUserKey3 = row[7]
+                        });
+                        //currency specific configuration
                         journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC EUR"];
                         journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC EUR"];
                         journal.CurrencyCode = ConfigurationManager.AppSettings["CCODE EUR"];
-                        //journal.ExchangeRate = Convert.ToDecimal(ConfigurationManager.AppSettings["ExchangeRate"]);
+
+                        BuildNominalLines(serviceClient, request, taxJournalDetails, journal, ref response, ref successLines, ref failureLines, rowIndex);
+
+                        rowIndex++;
                     }
-                    break;*/
+                    break;
                 default:
                     Console.WriteLine("Nothing Entered ending application");
+                    Environment.Exit(0);
                     break;
             }
 
             Console.WriteLine(string.Format("\n\nA total of {0} lines were read\n{1} lines were pushed successfully\n{2} lines failed", nominal.csvList.Count, successLines, failureLines));
         }
 
-        private static void CreateNominalParts(out NominalLedgerServiceClient serviceClient, out NominalTaxJournalUpdateRequest request, out List<NominalTaxJournalDetail> taxJournalDetails, out NominalTaxJournal journal, out NominalTransactionUpdateResponse response)
+        private static void BuildNominalLines(NominalLedgerServiceClient serviceClient, NominalTaxJournalUpdateRequest request, List<NominalTaxJournalDetail> taxJournalDetails, NominalTaxJournal journal, ref NominalTransactionUpdateResponse response, ref int successLines, ref int failureLines, int rowIndex)
+        {
+            journal.DetailLines = taxJournalDetails.ToArray();
+            journal.Reference = "VOUCHERREF";
+            journal.BatchReference = "FONTEVA";
+            journal.PostingDate = DateTime.Now;
+            journal.HeaderDebitCreditFlag = modEnumsDebitCreditType.Credit;
+            journal.Description = "Membership Import Journal";
+            journal.PostLive = false;
+
+            request.Ticket = FetchTicket();
+            request.Transaction = journal;
+
+            try
+            {
+                Console.WriteLine("trying to make a request");
+                response = serviceClient.NominalTaxJournalUpdate(request);
+                if (response.ErrorID > 0)
+                {
+                    Console.WriteLine("The request was sent however the following error came back form the web service:");
+                    Console.WriteLine(response.ErrorMessage);
+                    Console.WriteLine("The request failed on line {0}", rowIndex + 1);
+                    failureLines++;
+                }
+                else
+                {
+                    Console.WriteLine(response.Transaction.HeaderAuditNo.ToString());
+                    successLines++;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The following error has occured no request was sent:\n" + e);
+            }
+        }
+
+        private static void BuildNominalHeader(out NominalLedgerServiceClient serviceClient, out NominalTaxJournalUpdateRequest request, out List<NominalTaxJournalDetail> taxJournalDetails, out NominalTaxJournal journal, out NominalTransactionUpdateResponse response)
         {
             serviceClient = new NominalLedgerServiceClient();
             request = new NominalTaxJournalUpdateRequest();

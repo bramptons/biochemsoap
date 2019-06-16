@@ -32,7 +32,8 @@ namespace ADI
 
         private static char ReturnCurrency()
         {
-            Console.WriteLine("Just type in: \"sterling or dollar\"");
+            Console.WriteLine("Just type in: \"sterling, dollar or euro\" as the application is in test mode");
+            //logic will be entered here in order to discern the report that is being read and then auto populating the the 'path string' to return the correct char switch
             string path = Console.ReadLine();
             if (path == "sterling")
             {
@@ -46,7 +47,15 @@ namespace ADI
                 }
                 else
                 {
-                    return 'e';
+                    if(path == "euro")
+                    {
+                        return 'e';
+                    }
+                    else
+                    {
+                        Console.WriteLine("No currency selected reuturning failure flag");
+                        return 'f';
+                    }
                 }
             }
         }
