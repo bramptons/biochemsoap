@@ -52,32 +52,126 @@ namespace ADI
             int successLines = 0;
             int failureLines = 0;
             int rowIndex = 0;
+            int skippedLines = 0;
 
+            foreach (var row in nominal.csvList)
+            {
+                //test if the line needs to be skipped
+                if(row[9] != "x")
+                {
+                    //check the currency of the line
+                    switch (row[8])
+                    {
+                        case "GBP":
+                            Console.WriteLine("Currency selected: Sterling GBP");
+                            BuildNominalHeader(out serviceClient, out request, out taxJournalDetails, out journal, out response);
+
+                            taxJournalDetails.Add(new NominalTaxJournalDetail()
+                            {
+                                NominalCode = row[0],
+                                HomeNetValue = Convert.ToDouble(row[1]),
+                                LineDetail = row[2],
+                                TaxCode = row[3],
+                                HomeTaxValue = Convert.ToDouble(row[4]),
+                                TransactionUserKey1 = row[5],
+                                TransactionUserKey2 = row[6],
+                                TransactionUserKey3 = row[7]
+                            });
+                            //currency specific configuration
+                            journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC GBP"];
+                            journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC GBP"];
+
+                            BuildNominalLines(serviceClient, request, taxJournalDetails, journal, ref response, ref successLines, ref failureLines, rowIndex);
+                            break;
+                        case "EURR":
+                            Console.WriteLine("Currency selected: Euros");
+                                BuildNominalHeader(out serviceClient, out request, out taxJournalDetails, out journal, out response);
+
+                                taxJournalDetails.Add(new NominalTaxJournalDetail()
+                                {
+                                    NominalCode = row[0],
+                                    CurrencyGrossValue = Convert.ToDouble(row[1]),
+                                    LineDetail = row[2],
+                                    TaxCode = row[3],
+                                    CurrencyTaxValue = Convert.ToDouble(row[4]),
+                                    TransactionUserKey1 = row[5],
+                                    TransactionUserKey2 = row[6],
+                                    TransactionUserKey3 = row[7]
+                                });
+                                //currency specific configuration
+                                journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC EUR"];
+                                journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC EUR"];
+                                journal.CurrencyCode = ConfigurationManager.AppSettings["CCODE EUR"];
+
+                                BuildNominalLines(serviceClient, request, taxJournalDetails, journal, ref response, ref successLines, ref failureLines, rowIndex);
+                                break;
+                        case "USD":
+                            Console.WriteLine("Currency selected: US Dollars");
+                            BuildNominalHeader(out serviceClient, out request, out taxJournalDetails, out journal, out response);
+
+                            taxJournalDetails.Add(new NominalTaxJournalDetail()
+                            {
+                                NominalCode = row[0],
+                                CurrencyGrossValue = Convert.ToDouble(row[1]),
+                                LineDetail = row[2],
+                                TaxCode = row[3],
+                                CurrencyTaxValue = Convert.ToDouble(row[4]),
+                                TransactionUserKey1 = row[5],
+                                TransactionUserKey2 = row[6],
+                                TransactionUserKey3 = row[7]
+                            });
+                            //currency specific configuration
+                            journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC USD"];
+                            journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC USD"];
+                            journal.CurrencyCode = ConfigurationManager.AppSettings["CCODE USD"];
+
+                            BuildNominalLines(serviceClient, request, taxJournalDetails, journal, ref response, ref successLines, ref failureLines, rowIndex);
+                            break;
+                            //if no currency or wrong value entered 
+                        default:
+                            failureLines++;
+                            Console.WriteLine("No currency or wrong currency entered: " + row[8]);
+                            break;
+                    }
+                }
+                else
+                {
+                    skippedLines++;
+                }
+                rowIndex++;
+            }
+            //original switch no longer needed
             switch (nominal.typeChar)
             {
                 case 's':
                     Console.WriteLine("Currency selected: Sterling GBP");
                     foreach (var row in nominal.csvList)
                     {
-                        BuildNominalHeader(out serviceClient, out request, out taxJournalDetails, out journal, out response);
-
-                        taxJournalDetails.Add(new NominalTaxJournalDetail()
+                        if(row[9] != "x")
                         {
-                            NominalCode = row[0],
-                            HomeNetValue = Convert.ToDouble(row[1]),
-                            LineDetail = row[2],
-                            TaxCode = row[3],
-                            HomeTaxValue = Convert.ToDouble(row[4]),
-                            TransactionUserKey1 = row[5],
-                            TransactionUserKey2 = row[6],
-                            TransactionUserKey3 = row[7]
-                        });
-                        //currency specific configuration
-                        journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC GBP"];
-                        journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC GBP"];
+                            BuildNominalHeader(out serviceClient, out request, out taxJournalDetails, out journal, out response);
 
-                        BuildNominalLines(serviceClient, request, taxJournalDetails, journal, ref response, ref successLines, ref failureLines, rowIndex);
+                            taxJournalDetails.Add(new NominalTaxJournalDetail()
+                            {
+                                NominalCode = row[0],
+                                HomeNetValue = Convert.ToDouble(row[1]),
+                                LineDetail = row[2],
+                                TaxCode = row[3],
+                                HomeTaxValue = Convert.ToDouble(row[4]),
+                                TransactionUserKey1 = row[5],
+                                TransactionUserKey2 = row[6],
+                                TransactionUserKey3 = row[7]
+                            });
+                            //currency specific configuration
+                            journal.GrossContraNominalCode = ConfigurationManager.AppSettings["GCNC GBP"];
+                            journal.TaxContraNominalCode = ConfigurationManager.AppSettings["TCNC GBP"];
 
+                            BuildNominalLines(serviceClient, request, taxJournalDetails, journal, ref response, ref successLines, ref failureLines, rowIndex);
+                        }
+                        else
+                        {
+                            skippedLines++;
+                        }
                         rowIndex++;
                     }
                     break;
@@ -142,17 +236,17 @@ namespace ADI
                     break;
             }
 
-            Console.WriteLine(string.Format("\n\nA total of {0} lines were read\n{1} lines were pushed successfully\n{2} lines failed", nominal.csvList.Count, successLines, failureLines));
+            Console.WriteLine(string.Format("\n\nA total of {0} lines were read\n{1} lines were pushed successfully\n{2} lines failed\n{3} lines were skipped", nominal.csvList.Count, successLines, failureLines, skippedLines));
         }
 
         private static void BuildNominalLines(NominalLedgerServiceClient serviceClient, NominalTaxJournalUpdateRequest request, List<NominalTaxJournalDetail> taxJournalDetails, NominalTaxJournal journal, ref NominalTransactionUpdateResponse response, ref int successLines, ref int failureLines, int rowIndex)
         {
             journal.DetailLines = taxJournalDetails.ToArray();
-            journal.Reference = "VOUCHERREF";
-            journal.BatchReference = "FONTEVA";
+            journal.Reference = ConfigurationManager.AppSettings["JOURREF"];
+            journal.BatchReference = ConfigurationManager.AppSettings["BATREF"];
             journal.PostingDate = DateTime.Now;
             journal.HeaderDebitCreditFlag = modEnumsDebitCreditType.Credit;
-            journal.Description = "Membership Import Journal";
+            journal.Description = ConfigurationManager.AppSettings["JOURDESC"];
             journal.PostLive = false;
 
             request.Ticket = FetchTicket();
