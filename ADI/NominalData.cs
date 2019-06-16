@@ -34,17 +34,15 @@ namespace ADI
         {
             Console.WriteLine("Just type in: \"sterling or dollar\"");
             string path = Console.ReadLine();
-            char currency;
             if (path == "sterling")
             {
-                currency = 's';
-                return currency;
+                return 's';
             }
             else
             {
                 if(path == "dollar")
                 {
-                    return currency = 'd';
+                    return 'd';
                 }
                 else
                 {

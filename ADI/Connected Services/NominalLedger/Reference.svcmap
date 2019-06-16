@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://lfs1.bsppl.net/NominalLedgerService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="NominalLedgerService.wsdl" MetadataType="Wsdl" ID="717a7aa1-cbd2-401b-84af-f8af0a27f8dc" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?wsdl" />
-    <MetadataFile FileName="NominalLedgerService.disco" MetadataType="Disco" ID="d80bb7a2-aa9a-4ad7-8755-e1e6226c04e8" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?disco" />
-    <MetadataFile FileName="NominalLedgerService.xsd" MetadataType="Schema" ID="b612b2ec-d165-45d7-adb0-e4edd952e582" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?xsd=xsd0" />
-    <MetadataFile FileName="NominalLedgerService1.xsd" MetadataType="Schema" ID="bab82a18-1ca1-4a22-87e6-361f4ae7ecf6" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?xsd=xsd1" />
-    <MetadataFile FileName="NominalLedgerService2.xsd" MetadataType="Schema" ID="4088b29d-ca99-47e3-beac-6c652542e77c" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?xsd=xsd3" />
-    <MetadataFile FileName="NominalLedgerService3.xsd" MetadataType="Schema" ID="2f17823b-85cc-4e5f-8f57-3f75aab5475d" SourceId="1" SourceUrl="http://lfs1.bsppl.net/NominalLedgerService.svc?xsd=xsd2" />
+    <MetadataFile FileName="NominalLedgerService1.disco" MetadataType="Disco" ID="dfc1175a-2265-4a45-b880-00bf48f4e8ae" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc?disco" />
+    <MetadataFile FileName="NominalLedgerService4.xsd" MetadataType="Schema" ID="a6b027fc-bbed-4d89-96e6-f956d6ddb103" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NominalLedgerService1.wsdl" MetadataType="Wsdl" ID="bb563d36-2cb3-4cf1-9839-2074299f8666" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc?wsdl" />
+    <MetadataFile FileName="NominalLedgerService41.xsd" MetadataType="Schema" ID="cacc8160-b8ac-4306-b0d4-24bc10ae1331" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="NominalLedgerService42.xsd" MetadataType="Schema" ID="77d48b76-4108-4f54-b0a3-0431a3b35cfe" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc?xsd=xsd3" />
+    <MetadataFile FileName="NominalLedgerService43.xsd" MetadataType="Schema" ID="fbe79b47-9153-41b0-bb5e-3f63063110ff" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

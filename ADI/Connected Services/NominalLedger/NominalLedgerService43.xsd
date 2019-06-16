@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" />
+  <xs:element name="BankRecord_Return">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q1:BankReturnRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BankRecord_ReturnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="BankRecord_ReturnResult" nillable="true" type="q2:BankReturnResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BankRecord_Update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q3:BankUpdateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BankRecord_UpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="BankRecord_UpdateResult" nillable="true" type="q4:BankUpdateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_Return">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q5:NominalReturnRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_ReturnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalRecord_ReturnResult" nillable="true" type="q6:NominalReturnResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_Update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q7:NominalUpdateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_UpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalRecord_UpdateResult" nillable="true" type="q8:NominalUpdateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q9:NominalCollectionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalRecord_CollectionResult" nillable="true" type="q10:NominalCollectionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalAnalysis_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q11:NominalAnalysisRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalAnalysis_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalAnalysis_CollectionResult" nillable="true" type="q12:NominalAnalysisResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTurnover_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q13:NominalTurnoverRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTurnover_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalTurnover_CollectionResult" nillable="true" type="q14:NominalTurnoverResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BankAnalysis_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q15:BankAnalysisRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BankAnalysis_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="BankAnalysis_CollectionResult" nillable="true" type="q16:BankAnalysisResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRollup_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q17:NominalRollupRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRollup_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalRollup_CollectionResult" nillable="true" type="q18:NominalRollupResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCOARollup_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q19:NominalCOARollupRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCOARollup_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalCOARollup_CollectionResult" nillable="true" type="q20:NominalCOARollupResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_UpdateBasic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="MajorHeadingCode" type="q21:modEnums.MajorHeadingType" />
+        <xs:element minOccurs="0" name="NominalCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="AccountType" type="q22:modEnums.NominalType" />
+        <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryCode1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryCode2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryCode3" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryCode4" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryCode5" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryCode6" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryCode7" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryCode8" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Ticket" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_UpdateBasicResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NominalRecord_UpdateBasicResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_Delete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q23:NominalRecordDeleteRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecord_DeleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalRecord_DeleteResult" nillable="true" type="q24:DeleteRecordResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MajorHeading_Return">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q25:MajorHeadingReturnRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MajorHeading_ReturnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="MajorHeading_ReturnResult" nillable="true" type="q26:MajorHeadingReturnResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MajorHeading_Update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q27:MajorHeadingUpdateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MajorHeading_UpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="MajorHeading_UpdateResult" nillable="true" type="q28:MajorHeadingUpdateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MajorHeading_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q29:MajorHeadingCollectionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MajorHeading_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="MajorHeading_CollectionResult" nillable="true" type="q30:MajorHeadingCollectionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCategory_Return">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q31:NominalCategoryReturnRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCategory_ReturnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalCategory_ReturnResult" nillable="true" type="q32:NominalCategoryReturnResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCategory_Update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q33:NominalCategoryUpdateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCategory_UpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalCategory_UpdateResult" nillable="true" type="q34:NominalCategoryUpdateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCategory_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q35:NominalCategoryCollectionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCategory_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalCategory_CollectionResult" nillable="true" type="q36:NominalCategoryCollectionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCategory_UpdateBasic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="CategoryNumber" type="q37:modEnums.CategoryType" />
+        <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Ticket" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalCategory_UpdateBasicResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NominalCategory_UpdateBasicResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTransactionGenericUpdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q38:NominalTransactionUpdateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTransactionGenericUpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalTransactionGenericUpdateResult" nillable="true" type="q39:NominalTransactionUpdateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTransactionGenericReturn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q40:NominalTransactionReturnRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTransactionGenericReturnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalTransactionGenericReturnResult" nillable="true" type="q41:NominalTransactionReturnResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalJournalUpdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q42:NominalJournalUpdateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalJournalUpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalJournalUpdateResult" nillable="true" type="q43:NominalTransactionUpdateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTaxJournalUpdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q44:NominalTaxJournalUpdateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTaxJournalUpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalTaxJournalUpdateResult" nillable="true" type="q45:NominalTransactionUpdateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecurringJournalUpdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q46:NominalRecurringJournalUpdateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecurringJournalUpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalRecurringJournalUpdateResult" nillable="true" type="q47:NominalTransactionUpdateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecurringTaxJournalUpdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q48:NominalRecurringTaxJournalUpdateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalRecurringTaxJournalUpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalRecurringTaxJournalUpdateResult" nillable="true" type="q49:NominalTransactionUpdateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTransaction_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q50:NominalJournalCollectionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalTransaction_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalTransaction_CollectionResult" nillable="true" type="q51:NominalJournalCollectionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalDoubleEntry_Collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q52:NominalDoubleEntryCollectionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NominalDoubleEntry_CollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="NominalDoubleEntry_CollectionResult" nillable="true" type="q53:NominalDoubleEntryCollectionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PostNominalLedgerBatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q54:NominalPostBatchRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PostNominalLedgerBatchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="PostNominalLedgerBatchResult" nillable="true" type="q55:NominalPostBatchResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteBatchTransaction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="request" nillable="true" type="q56:DeleteBatchedJournalTransactionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteBatchTransactionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/AccessUKWebService.DimensionsWebService" minOccurs="0" name="DeleteBatchTransactionResult" nillable="true" type="q57:DeleteTransactionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

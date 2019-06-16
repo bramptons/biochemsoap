@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://lfs1.bsppl.net/CredentialsService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/CredentialsService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CredentialsService.xsd" MetadataType="Schema" ID="fd636b1c-4036-4fa6-9819-5e2e9a6f4b47" SourceId="1" SourceUrl="http://lfs1.bsppl.net/CredentialsService.svc?xsd=xsd0" />
-    <MetadataFile FileName="CredentialsService.disco" MetadataType="Disco" ID="feb27281-4099-4588-bf85-5625dea148d3" SourceId="1" SourceUrl="http://lfs1.bsppl.net/CredentialsService.svc?disco" />
-    <MetadataFile FileName="CredentialsService.wsdl" MetadataType="Wsdl" ID="49f00d80-0d2b-47c3-9cdb-44ac6a9db134" SourceId="1" SourceUrl="http://lfs1.bsppl.net/CredentialsService.svc?wsdl" />
-    <MetadataFile FileName="CredentialsService1.xsd" MetadataType="Schema" ID="ed7e39fc-63d3-4592-a760-65dcdefbdadc" SourceId="1" SourceUrl="http://lfs1.bsppl.net/CredentialsService.svc?xsd=xsd1" />
-    <MetadataFile FileName="CredentialsService2.xsd" MetadataType="Schema" ID="2ba6f01a-0e06-4b72-b5ae-edc066222704" SourceId="1" SourceUrl="http://lfs1.bsppl.net/CredentialsService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CredentialsService3.xsd" MetadataType="Schema" ID="8e394b3e-ec3e-4a78-b62b-aef731c08046" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/CredentialsService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CredentialsService31.xsd" MetadataType="Schema" ID="67aeaf2f-9c8e-48ef-81dd-e7a6b935bcf1" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/CredentialsService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CredentialsService32.xsd" MetadataType="Schema" ID="0459fc0a-5568-49c3-871e-fbdaca7b0698" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/CredentialsService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CredentialsService1.disco" MetadataType="Disco" ID="5f778385-4448-4da5-a691-7684c42886de" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/CredentialsService.svc?disco" />
+    <MetadataFile FileName="CredentialsService1.wsdl" MetadataType="Wsdl" ID="b8598304-0075-4026-99f8-5e54db9d3034" SourceId="1" SourceUrl="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/CredentialsService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

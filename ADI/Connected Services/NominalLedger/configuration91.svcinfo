@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="4EcJRqXJL6ZTGm7ksTgrylBLg2s=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="e2FSp8hg8MQeTiMj90qb+EHSvIc=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_INominalLedgerService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_INominalLedgerService" contract="NominalLedger.INominalLedgerService" bindingType="basicHttpBinding" address="http://lfs1.bsppl.net/NominalLedgerService.svc" bindingConfiguration="BasicHttpBinding_INominalLedgerService">
+    <endpoint name="BasicHttpBinding_INominalLedgerService" contract="NominalLedger.INominalLedgerService" bindingType="basicHttpBinding" address="http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc" bindingConfiguration="BasicHttpBinding_INominalLedgerService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://lfs1.bsppl.net/NominalLedgerService.svc</serializedValue>
+          <serializedValue>http://appdimensions.uksouth.cloudapp.azure.com/AccessDWS/NominalLedgerService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
